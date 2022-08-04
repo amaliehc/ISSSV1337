@@ -96,8 +96,8 @@ read_proff <- function(file, start, end) {
 }
 
 ## Creating dfs-----------------------------------------------------------------
-kreftforeningen <- read_proff("Dashboard/Data/Kreftforeningen2002_2021.html", "2002", "2021")
-care <- read_proff("Dashboard/Data/CARENorge2010_2021.html", "2010", "2021")
+kreftforeningen <- read_proff("Data/Kreftforeningen2002_2021.html", "2002", "2021")
+care <- read_proff("Data/CARENorge2010_2021.html", "2010", "2021")
 
 kreftforeningen[, 2:(length(names(kreftforeningen)) - 1)]
 
@@ -270,7 +270,20 @@ read_proff_improved <- function(file) {
     arrange(desc(year))
 }
 
-test <- read_proff_test_2("Dashboard/Data/Kreftforeningen2002_2021.html")
+test <- read_proff_improved("Data/Kreftforeningen2002_2021.html")
 identical(kreftforeningen, test)
+
+care2 <- read_proff_improved("Data/CARENorge2010_2021.html")
+
+identical(care, care2)
+riks <- read_proff_improved("Data/Riksmaal2011_21.html")
+riks2 <- read_proff("Data/Riksmaal2011_21.html", "2011", "2021")
+
+identical(riks, riks2)
+
+kors <- read_proff_improved("Data/Rodekors2001_2020.html")
+kors2 <- read_proff("Data/Rodekors2001_2020.html", "2001", "2020")
+
+identical(kors, kors2)
 ```
 
